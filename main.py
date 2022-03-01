@@ -1,25 +1,18 @@
 """starting point for the project"""
-from user import User
-from destination import Destination
-from booking import Booking
-from vehicle import Vehicle
+
+from login import Login
+from registration import Registration
 
 OPTIONS_MAP = {
-    1: User().display_option,
-    2: Destination().display_option,
-    3: Booking().display.option,
-    4: Vehicle().display.option
+    1: Login().display_options,
+    2: Registration().display_options
 }
 
 
 def display_options():
     """options in the taxi service system """
-    print("welcome to taxi service System")
-    print("Select your option")
-    print("1.User ")
-    print("2.Destination ")
-    print("3.Booking ")
-    print("4.Vehicle ")
+    print("1:Login")
+    print("2:Register here")
 
 
 def option_router():
