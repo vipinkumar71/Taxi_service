@@ -19,4 +19,14 @@ class User:
         connection.close()
 
     def login(self):
-        pass
+        username = input("Enter unique username: ")
+        password = input("Enter password: ")
+        connection = get_db_cursor()
+        cursor = connection.cursor()
+        cursor.execute(f'SELECT id FROM {self.db_table} WHERE username="{username}" AND password="{password}"')
+        data = cursor.fetchall()
+        if not data:
+            print("Authentication failed")
+        else:
+            print("User Logged in successfully")
+
