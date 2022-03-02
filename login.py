@@ -14,8 +14,6 @@ class Login:
         return {
             1: self.get_list,
             2: self.add,
-
-
         }
 
     def display_options(self):

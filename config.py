@@ -5,8 +5,13 @@ import mysql.connector
 
 MYSQL_HOST = "localhost"
 MYSQL_USER = "root"
-MYSQL_PASSWORD = "bumblebee@71"
+MYSQL_PASSWORD = ""
 MYSQL_DATABASE = "taxi_service"
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
 
 
 def get_db_cursor():
