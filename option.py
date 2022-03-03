@@ -1,33 +1,25 @@
 """starting point for the project"""
-from user import User
 from destination import Destination
-from booking import Booking
 from vehicle import Vehicle
 
-OPTIONS_MAP = {
-    1: User().show_options,
-    2: Destination().show_options,
-    3: Booking().show_options,
-    4: Vehicle().show_options
-}
 
+class Option:
+    OPTION_MAP = {
 
-def show_options():
-    """options in the taxi service system """
-    print("welcome to taxi service System")
-    print("Select your option")
-    print("1.User ")
-    print("2.Destination ")
-    print("3.Booking ")
-    print("4.Vehicle ")
+    }
 
-
-def option_router():
-    """routes option according to the input"""
-    selected_option = int(input("Enter your option:"))
-    return OPTIONS_MAP.get(selected_option)()
-
-
-if __name__ == '__main__':
-    show_options()
-    option_router()
+    def display_options(self):
+        """options in the taxi service system """
+        print("welcome to taxi service System")
+        print("Select your option")
+        print("1.User ")
+        print("2.Destination ")
+        print("3.Booking ")
+        print("4.Vehicle ")
+        selected_input = int(input("Select option: "))
+        if selected_input == 2:
+            Destination().display_options()
+        elif selected_input == 4:
+            Vehicle().display_options()
+        else:
+            self.OPTION_MAP.get(selected_input)()
