@@ -10,10 +10,10 @@ class Vehicle:
 
     def vehicle_option_map(self):
         return {
-            1: self.get_list,
-            2: self.add,
-            3: self.update,
-            4: self.delete
+            1: self._get_list,
+            2: self._add,
+            3: self._update,
+            4: self._delete
 
         }
 
@@ -41,7 +41,7 @@ class Vehicle:
 
     """ADD CRUD operations """
 
-    def get_list(self):
+    def _get_list(self):
         connection = get_db_cursor()
         cursor = connection.cursor()
         cursor.execute(f"SELECT * from {self.db_table}")
@@ -50,7 +50,7 @@ class Vehicle:
         connection.close()
         print("You got your list")
 
-    def add(self, vehicle_type):
+    def _add(self, vehicle_type):
         connection = get_db_cursor()
         cursor = connection.cursor()
         cursor.execute(f"INSERT INTO {self.tb_table}(vehicle_type) VALUES('{vehicle_type}')")
@@ -58,7 +58,7 @@ class Vehicle:
         connection.close()
         print("Successfully added records")
 
-    def update(self, vehicle_type, id):
+    def _update(self, vehicle_type, id):
         connection = get_db_cursor()
         cursor = connection.cursor()
         cursor.execute(f"UPDATE {self.db_table} SET vehicle_type ='{vehicle_type}' WHERE id ={id};")
@@ -66,7 +66,7 @@ class Vehicle:
         connection.close()
         print("Successfully Updated 1 record")
 
-    def delete(self, id):
+    def _delete(self, id):
         connection = get_db_cursor()
         cursor = connection.cursor()
         cursor.execute(f"DELETE from {self.db_table} WHERE id={id};")

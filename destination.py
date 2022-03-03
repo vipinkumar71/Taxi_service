@@ -12,18 +12,18 @@ class Destination:
 
     def destination_option_map(self):
         return {
-            1: self.get_list,
-            2: self.add,
-            3: self.update,
-            4: self.delete
+            1: self._get_list,
+            2: self._add,
+            3: self._update,
+            4: self._delete
         }
 
     def display_options(self):
         """All the display option for the destination here"""
         print("1.Destination name and charges")
-        print("2.Add destination and charges")
-        print("3.Update destination and charges")
-        print("4 Delete destination and charges")
+        print("2.Add destination name and charges")
+        print("3.Update destination name and charges")
+        print("4 Delete destination name and charges")
 
         selected_input = int(input("Select option: "))
         if selected_input == 2:
@@ -34,16 +34,16 @@ class Destination:
             destination_name = input("Enter Destination Name: ")
             destination_charges = input("Enter Destination charges: ")
             id = int(input("Enter your id:"))
-            self.destination_option_map().get(selected_input)(destination_name, destination_charges,id)
-        elif selected_input==4:
-            id =int(input("Enter your id:"))
+            self.destination_option_map().get(selected_input)(destination_name, destination_charges, id)
+        elif selected_input == 4:
+            id = int(input("Enter your id:"))
             self.destination_option_map().get(selected_input)(id)
         else:
             self.destination_option_map().get(selected_input)()
 
     """ADD CRUD operations"""
 
-    def get_list(self):
+    def _get_list(self):
         connection = get_db_cursor()
         cursor = connection.cursor()
         cursor.execute(f"SELECT * from {self.db_table}")
@@ -52,7 +52,7 @@ class Destination:
         connection.close()
         print("You got your list")
 
-    def add(self, destination_name, destination_charges):
+    def _add(self, destination_name, destination_charges):
         connection = get_db_cursor()
         cursor = connection.cursor()
         cursor.execute(
@@ -61,7 +61,7 @@ class Destination:
         connection.close()
         print("Successfully added record")
 
-    def update(self, destination_name, destination_charges, id):
+    def _update(self, destination_name, destination_charges, id):
         connection = get_db_cursor()
         cursor = connection.cursor()
         cursor.execute(
@@ -70,7 +70,7 @@ class Destination:
         connection.close()
         print("Successfully Updated 1 record")
 
-    def delete(self, id):
+    def _delete(self, id):
         connection = get_db_cursor()
         cursor = connection.cursor()
         cursor.execute(f"DELETE from {self.db_table} WHERE id={id};")
