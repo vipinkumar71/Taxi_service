@@ -5,7 +5,7 @@ from config import get_db_cursor
 
 class Destination:
     """Destination class to handle operation related to destination"""
-    db_table = 'destination'
+    tb_table = 'destination'
 
     def __init__(self):
         pass
@@ -46,7 +46,7 @@ class Destination:
     def _get_list(self):
         connection = get_db_cursor()
         cursor = connection.cursor()
-        cursor.execute(f"SELECT * from {self.db_table}")
+        cursor.execute(f"SELECT * from {self.tb_table}")
         for destination in cursor.fetchall():
             print(f"{destination[0]}-----{destination[1]}:{destination[2]}")
         connection.close()
@@ -56,7 +56,7 @@ class Destination:
         connection = get_db_cursor()
         cursor = connection.cursor()
         cursor.execute(
-            f"INSERT INTO  {self.db_table}(destination_name,destination_charges) VALUES('{destination_name}','{destination_charges}');")
+            f"INSERT INTO  {self.tb_table}(destination_name,destination_charges) VALUES('{destination_name}','{destination_charges}');")
         connection.commit()
         connection.close()
         print("Successfully added record")
@@ -65,7 +65,7 @@ class Destination:
         connection = get_db_cursor()
         cursor = connection.cursor()
         cursor.execute(
-            f"UPDATE {self.db_table} SET destination_name ='{destination_name}', destination_charges='{destination_charges}' WHERE id ={id};")
+            f"UPDATE {self.tb_table} SET destination_name ='{destination_name}', destination_charges='{destination_charges}' WHERE id ={id};")
         connection.commit()
         connection.close()
         print("Successfully Updated 1 record")
@@ -73,7 +73,7 @@ class Destination:
     def _delete(self, id):
         connection = get_db_cursor()
         cursor = connection.cursor()
-        cursor.execute(f"DELETE from {self.db_table} WHERE id={id};")
+        cursor.execute(f"DELETE from {self.tb_table} WHERE id={id};")
         connection.commit()
         connection.close()
         print("Successfully Delete 1 record")

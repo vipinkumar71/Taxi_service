@@ -23,6 +23,6 @@ class Option:
         elif selected_input == 3:
             Vehicle().display_options()
         elif selected_input == 4:
-            Booking().get_list()
+            Booking().display_options()
         else:
             self.OPTION_MAP.get(selected_input)()
